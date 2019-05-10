@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+    <style>
+        .error{ color:red; }
+    </style>
+</head>
+<body>
+<!--
+<?php
+
+$name=$email=$roll=$passwd="";
+$ErrName= $ErrEmail = $ErrRoll = $ErrPasswd="";
+
+function test_input($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data
+}
+
+if($_SERVER["REQUESTED_METHOD"] ==_POST)
+{
+    if(empty(_POST["name"]))
+        $ErrName ="Name can't be empty";
+    else
+    {
+        $name = test_input(_POST["name"]);
+    if(!preg_match("/^[a-zA-Z ]*$/",$name))
+        $ErrName ="Invalid Name";
+    }
+
+    if(empty(_POST["email"]))
+        $ErrEmail ="Email can't be empty";
+    else
+    {
+        $email=test_input(_POST["email"]);
+        if(!filter_var($email,FILTER_VALIDATE_EMAIL))
+            $ErrEmail="Invalid email address";
+    }
+
+    if(empty(_POST["roll"]))
+        $ErrRoll ="Roll No can't be empty";
+    else
+    {
+        $roll = test_input(_POST["roll"]);
+    if(!preg_match("/^[a-zA-Z0-9]*$/",$roll))
+        $ErrRoll ="Invalid Roll NO";
+    }
+
+    if(empty(_POST["passwd"]))
+        $ErrPasswd ="Password can't be empty";
+    else
+        $passwd= test_input(_POST["passwd"]);
+    
+}
+
+
+?>
+
+
+
+-->
+
+    <script>
+        function validate()
+        {
+            var nam= document.getElementById("1").value;
+            var pass = document.getElementById("7").value;
+            var cg= document.getElementById("6").value; 
+            var letters = /^[A-Za-z ]+$/;
+            if(!nam.match(letters))
+            {
+                alert('Invalid Name :Please input alphabet characters only');
+                return false;
+             }
+             else  if(pass.length <3)
+             {
+                 alert('Password size should be >2 chars');
+                return false;
+            }
+            else if(cg >10)
+            {
+                alert('Invalid CGPA');
+                return false;
+            }
+            else
+                return true;
+        }
+        function fun()
+        {
+            window.location.href="sign_in.php";
+        }
+    </script>
+
+
+
+	<h1 style="text-align:center">REGISTRATION PAGE</h1>
+    <div align="center">
+    <span class="error">* required</span>
+ <!--   <form id="reg_form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>"> -->
+    
+    <form method="post" id="reg_form" onsubmit="return validate()" action="action_reg.php">
+        
+    <label class='txt'>Name: </label>
+    <input type="text" name="name" id="1" required>
+    <span class="error" id="ErrName">* <?php echo $ErrName; ?></span><br><br> 
+    <label class='txt'>Roll No:</label>
+    <input type="text" name="roll" id="2" required>
+    <span class="error">* <?php echo $ErrRoll; ?></span><br><br> 
+    <label class='txt'>Email:</label>
+    <input type="email" name="email" id="3" required>
+    <span class="error">* <?php echo $Errname; ?></span><br><br> 
+    <label class='txt'>Branch:</label>
+    <input type="text" name="branch" id="4" required><br><br>
+    <label class='txt'>College:</label>
+    <input type="text" name="college" id="5" required><br><br>
+    <label class='txt'>CGPA:</label>
+    <input type="text" name="cgpa" id="6" required><br><br>
+   <!-- 10th marks:
+    <input type="text" name="10th"><br><br>
+    12th marks:
+    <input type="text" name="12th"><br><br> -->
+    <label class='txt'>Password:</label>
+    <input type="text" name="passwd" id="7" required>
+    <span class="error">* <?php echo $ErrPasswd; ?></span><br><br>
+    <input type="submit" name="submit" class='but' value="Submit"><br><br>
+        </div>
+    </form>
+</body>
+</html>
+
